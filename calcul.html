@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+		<script scr = 'calcul.js'>
+		function solve() {
+			let to_replace = {'Cos':'Math.cos', 'Sin':'Math.sin','Tan':'Math.tan','Cot':'1/Math.tan','()^2':'Math.pow'}
+			for (key in to_replace) {
+				t_input.value = t_input.value.replaceALL(key,to_replace[key])
+			}
+			t_input.value = eval (t_input.value)
+		}
+		function deleteChar(input) {
+			input.value = input.value.substring(0, input.value.length - 1)
+		}
+		function addChar(input, character) {
+			if (input.value == null || input.value == "0")
+				input.value = character
+			else
+				input.value += character
+		}
+		function checkNum(str) {
+			for (var i = 0; i < str.length; i++) {
+			var ch = str.charAt(i);
+			if (ch < "0" || ch > "9") {
+			if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "."
+				&& ch != "(" && ch!= ")" && ch != "%") {
+				alert("invalid entry!")
+				return false
+					}
+				}
+			}
+			return true
+		}
+		function compute(form) {
+			form.display.value = eval(form.display.value);
+		}
+		function cos(form) {
+			form.display.value = Math.cos(form.display.value);
+		}
+		function sin(form) {
+			form.display.value = Math.sin(form.display.value);
+		}
+		function tan(form) {
+			form.display.value = Math.tan(form.display.value);
+		}
+		function sqrt(form) {
+			form.display.value = Math.sqrt(form.display.value);
+		}
+		function ln(form) {
+			form.display.value = Math.log(form.display.value);
+		}
+		function exp(form) {
+			form.display.value = Math.exp(form.display.value);
+		}
+		function square(form) {
+			form.display.value = eval(form.display.value) * eval(form.display.value)
+		}
+		</script>
+		<style type = 'text/css'>
+			.button{
+				width: 40px;
+				height: 40px;
+				front-size: 20px;
+				border: 1px solid #FFA07A;
+				margin-top: 4px;
+				border-radius: 5px;
+			}
+			.big_button{
+				width: 60px;
+				height: 40px;
+				front-size: 20px;
+				border: 1px solid #FFA07A;
+				margin-top: 4px;
+				border-radius: 5px;
+			}
+			* {
+				padding: 0;
+				margin: 5px;
+				text-align: center;
+			}
+			body {
+				background-color:white;
+			}
+			.calculator {
+				  width: 300px;
+				  height: 320px;
+				  background-color: #FFDAB9;
+				  box-shadow: 0px 0px 0px 10px #FFA07A;
+				  border: 5px solid black;
+				  border-radius: 10px;
+			}
+			#display {
+				  width: 300px;
+				  height: 40px;
+				  text-align: right;
+				  background-color: white;
+				  box-shadow: 0px 0px 0px 2px #FFA07A;
+				  border: 2px solid black;
+				  font-size: 18px;
+				  left: 2px;
+				  top: 2px;
+			}
+		</style>
+<form name = "calcul">
+<table class="calculator" cellspacing="0" cellpadding="1">
+	<tr>
+		<td colspan="5"><input id="display" name="display" value="0" size="28" maxlength="25"></td>
+	</tr>
+	<tr>
+		<td><input class ='button' type='button' value = '7' onclick = "addChar(this.form.display, '7')"></td>
+		<td><input class ='button' type='button' value = '8' onclick = "addChar(this.form.display, '8')"></td>
+		<td><input class ='button' type='button' value = '9' onclick = "addChar(this.form.display, '9')"></td>
+		<td><input class ='button' type='button' value = '+' onclick = "addChar(this.form.display, '+')"></td>
+		<td><input class ='button' type='button' value = "C" onclick = "this.form.display.value = 0 "></td>
+		<td><input class ='big_button' type='button' value = 'Cos' onclick = "if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+		<td><input class ='button' type='button' value = "&#960" onclick = "addChar(this.form.display,'3.14159265359')"></td>
+	</tr>
+	<tr>
+		<td><input class ='button' type='button' value = '4' onclick = "addChar(this.form.display, '4')"></td>
+		<td><input class ='button' type='button' value = '5' onclick = "addChar(this.form.display, '5')"></td>
+		<td><input class ='button' type='button' value = '6' onclick = "addChar(this.form.display, '6')"></td>
+		<td><input class ='button' type='button' value = '-' onclick = "addChar(this.form.display, '-')"></td>
+		<td><input class ='button' type='button' value = ')' onclick = "addChar(this.form.display,')')"></td>
+		<td><input class ='big_button' type='button' value = 'Sin' onclick = "if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+		<td><input class ='button' type='button' value = "ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
+	<tr>
+		<td><input class ='button' type='button' value = '1' onclick = "addChar(this.form.display, '1')"></td>
+		<td><input class ='button' type='button' value = '2' onclick = "addChar(this.form.display, '2')"></td>
+		<td><input class ='button' type='button' value = '3' onclick = "addChar(this.form.display, '3')"></td>
+		<td><input class ='button' type='button' value = '*' onclick = "addChar(this.form.display, '*')"></td>
+		<td><input class ='button' type='button' value = '(' onclick = "addChar(this.form.display, '(')"></td>
+		<td><input class ='big_button' type='button' value = 'Tan' onclick = "if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+		<td><input class ='button' type='button' value = "&radic;" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+	</tr>
+	<tr>
+		<td><input class ='button' type='button' value = '=' onclick = "if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
+		<td><input class ='button' type='button' value = '0' onclick = "addChar(this.form.display, '0')"></td>
+		<td><input class ='button' type='button' value = '/' onclick = "addChar(this.form.display, '/')"></td>
+		<td><input class ='button' type='button' value = "." onclick = "addChar(this.form.display, '.')"></td>
+		<td><input class ='button' type='button' value = "x^2" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
+		<td>Rad</td>
+	</tr>
+	</body>
+	  </tr>
+</table>
+</html>
